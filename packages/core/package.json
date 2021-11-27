@@ -7,7 +7,9 @@
   "scripts": {
     "postinstall": "node ./src/tasks/post-install"
   },
-  "dependencies": {},
+  "peerDependencies": {
+    "@nrwl/devkit": ">= 12.5.x"
+  },
   "homepage": "https://nx-dotnet.com/docs/core",
   "bugs": {
     "url": "https://github.com/nx-dotnet/nx-dotnet/issues?q=is%3Aopen+is%3Aissue+label%3Anx-dotnet%2Fcore",
