@@ -340,7 +340,7 @@ describe('nx-dotnet e2e', () => {
       writeFileSync(
         join(projectFolder, 'project.json'),
         JSON.stringify({
-          root: projectFolder,
+          root: joinPathFragments('apps', api),
         }),
       );
     });
@@ -353,7 +353,9 @@ describe('nx-dotnet e2e', () => {
       const workspaceJsonContents = readJson('workspace.json');
       unlinkSync(join(e2eDir, 'workspace.json'));
 
-      const projectJsonContents = readJson('project.json');
+      const projectJsonContents = readJson(
+        joinPathFragments('apps', api, 'project.json'),
+      );
       unlinkSync(join(projectFolder, 'project.json'));
 
       expect(() => runNxCommand(`build ${api}`)).not.toThrow();

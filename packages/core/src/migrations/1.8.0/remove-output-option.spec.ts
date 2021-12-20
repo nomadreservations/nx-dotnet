@@ -8,7 +8,7 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import update from './remove-output-option';
 
 import * as utils from '@nx-dotnet/utils';
-import { NXDOTNET_TAG } from '@nx-dotnet/utils';
+// import { NXDOTNET_TAG } from '@nx-dotnet/utils';
 
 jest.mock('@nx-dotnet/utils', () => ({
   ...(jest.requireActual('@nx-dotnet/utils') as typeof utils),
@@ -43,7 +43,7 @@ describe('remove-output-option', () => {
           },
         },
       },
-      tags: [NXDOTNET_TAG],
+      // tags: [NXDOTNET_TAG],
     });
 
     await expect(update(tree)).resolves.not.toThrow();
@@ -75,7 +75,7 @@ describe('remove-output-option', () => {
           },
         },
       },
-      tags: [NXDOTNET_TAG],
+      // tags: [NXDOTNET_TAG],
     });
 
     await expect(update(tree)).resolves.not.toThrow();
@@ -108,7 +108,7 @@ describe('remove-output-option', () => {
           },
         },
       },
-      tags: [NXDOTNET_TAG],
+      // tags: [NXDOTNET_TAG],
     });
 
     await expect(update(tree)).resolves.not.toThrow();

@@ -21,7 +21,7 @@ import { DotNetClient, dotnetNewOptions } from '@nx-dotnet/dotnet';
 import {
   findProjectFileInPath,
   isDryRun,
-  NXDOTNET_TAG,
+  // NXDOTNET_TAG,
   resolve,
 } from '@nx-dotnet/utils';
 
@@ -66,7 +66,7 @@ export function normalizeOptions(
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
     : [];
-  parsedTags.push(NXDOTNET_TAG);
+  // parsedTags.push(NXDOTNET_TAG);
 
   const npmScope = names(
     readWorkspaceConfiguration(host).npmScope || '',

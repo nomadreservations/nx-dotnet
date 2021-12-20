@@ -7,12 +7,13 @@ import {
   WorkspaceJsonConfiguration,
 } from '@nrwl/devkit';
 import { appRootPath } from '@nrwl/tao/src/utils/app-root';
+import { glob } from './glob';
 
 import { readFileSync } from 'fs';
 import { dirname, isAbsolute, relative, resolve } from 'path';
 import { XmlDocument, XmlElement } from 'xmldoc';
 
-import { NXDOTNET_TAG } from '../constants';
+// import { NXDOTNET_TAG } from '../constants';
 import { findProjectFileInPath, findProjectFileInPathSync } from './glob';
 
 export async function getProjectFileForNxProject(
@@ -93,14 +94,23 @@ export function getDependantProjectsForNxProject(
   return dependantProjects;
 }
 
-export function getNxDotnetProjects(
+export async function getNxDotnetProjects(
   host: Tree,
-): Map<string, ProjectConfiguration & NxJsonProjectConfiguration> {
+): Promise<Map<string, ProjectConfiguration & NxJsonProjectConfiguration>> {
   const allProjects = getProjects(host);
 
   for (const key in allProjects) {
     const p = allProjects.get(key);
-    if (!p?.tags?.includes(NXDOTNET_TAG)) {
+
+    let isNetProject = false;
+    for (const pattern of ['*.csproj', '*.fsproj', '*.vbproj'] as const) {
+      if (await glob(pattern, p?.root)) {
+        isNetProject = true;
+        break;
+      }
+    }
+
+    if (!isNetProject) {
       allProjects.delete(key);
     }
   }

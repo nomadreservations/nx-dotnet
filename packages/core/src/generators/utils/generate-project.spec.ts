@@ -4,7 +4,7 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { resolve } from 'path';
 
 import { DotNetClient, mockDotnetFactory } from '@nx-dotnet/dotnet';
-import { NXDOTNET_TAG } from '@nx-dotnet/utils';
+// import { NXDOTNET_TAG } from '@nx-dotnet/utils';
 
 import { NxDotnetProjectGeneratorSchema } from '../../models';
 import { GenerateProject } from './generate-project';
@@ -45,11 +45,11 @@ describe('nx-dotnet project generator', () => {
     expect(config).toBeDefined();
   });
 
-  it('should tag nx-dotnet projects', async () => {
-    await GenerateProject(appTree, options, dotnetClient, 'library');
-    const config = readProjectConfiguration(appTree, options.name);
-    expect(config.tags).toContain(NXDOTNET_TAG);
-  });
+  // it('should tag nx-dotnet projects', async () => {
+  //   await GenerateProject(appTree, options, dotnetClient, 'library');
+  //   const config = readProjectConfiguration(appTree, options.name);
+  //   expect(config.tags).toContain(NXDOTNET_TAG);
+  // });
 
   it('should not include serve target for libraries', async () => {
     await GenerateProject(appTree, options, dotnetClient, 'library');
